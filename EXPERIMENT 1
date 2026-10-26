@@ -1,0 +1,26 @@
+DATE: 20-8-26
+EXP. No.: 1
+Experiment 1: Information gathering using google, learning techniques of google Search Engine
+Theory
+Google dorking is the use of advanced google search operators to find specific information from publicly indexed web pages. 
+It helps in passive information gathering because it does not directly interact with target system.
+Google Search Operators
+Site: Restricts search results to a specific website or domain
+  Example: (i) Site: wikipedia.org artificial intelligence - searches for artificial intelligence only on wikipedia
+  (ii) Site: gov.in cyber security - searches for cybersecurity only on Indian government websites
+Intitle: - Searches for word or exact phrase in the webpage title
+  Example: intitle: "index of" "parent directory" - search for pages with "index of" in the title and "parent directory" in the page content
+Allintitle - Searches for pages whose titles contains all the specific words
+  Example: (i) allintitle: annual report 2025 - searches for pages whose title contains annual, report & 2025
+inurl - Searches for a word or phrase within the webpage url
+  Example (i) inurl: admin site: _.in - find .in websites whose URL's contain the word admin
+  (ii) inurl: login site: edu - finds educational websites where URL contains word login
+allinurl: - Searches for URL's containing all the specified words
+  Example: (i) allinurl: wp content uploads, searches for URL's containing both wp-content and uploadintext: searches a specific word or phrase within the body of webpages
+  Eg) site: _.gov filetype: pdf intext: "budget" - finds government pdf documents containing the word "budget"
+  (ii) intext: "cyber security" site: edu - finds educational website containing the phrase "cyber security"
+allintext: searches for webpage containing all specific words in their body text
+  Eg: (i) allintext: cyber security awareness - finds pages whose body text contains cyber, security, awareness- : - Excludes a specified word from search results
+  Eg) (i) Python -snake - searches for Python while excluding results related to snake
+related: Finds websites related or similar to a specified URL
+  Eg) (i) related: wikipedia.org (ii) related: github.com
