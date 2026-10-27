@@ -1,0 +1,95 @@
+*DATE: 24-9-26*
+*EXP. No. 5*
+
+*Exp 5- To perform brute force and dictionary attacks using hydra on an authorized test server to understand password vulnerabilities*
+
+*Tools required : Computer / laptop, Windows OS, Kali Linux, Hydra, authorized test server, test username & password, Network connection*
+
+*Theory:* A dictionary attack is a type of password attack in which a predefined list of commonly used passwords or words is used to find the correct password. It is effective against commonly used password. 
+A brute force attack is a password guessing technique in which different combination of characters are systematically tried until the correct password is found. 
+Hydra is a network login and auditing tool used to test the security of authentication services by performing controlled login attempts using supplied usernames and password lists. These attacks demonstrate how weak passwords can be vulnerable to automated password guessing techniques.
+
+*Dictionary Attack*
+In a dictionary attack a wordlist containing common password list to find the correct password. It is effective when users have weak or commonly used password
+
+*Brute Force Attack*
+In a brute force attack possible combinations of characters are tried systematically until the correct password is found. It can take a large number of attempts depending on the password length and complexity
+
+*Installation of Kali Linux on Windows*
+Kali Linux can be run on Windows using virtual machine such as virtual box or vmware
+
+*Procedure*
+- Download and install a virtualization software
+- Download the kali linux ISO
+- Create a new virtual machine
+- Select the Kali Linux ISO as the installation media
+- Allocate suitable RAM and storage
+- Start the virtual machine and complete the installation
+- After installation, start Kali Linux
+- Open the terminal and verify Hydra is available
+
+*Procedure*
+*A. Setting up the Test Environment*
+- Start Kali Linux
+- Start the authorized test server
+- Verify the IP address of the test server
+- Ensure that the testing machine can communicate with the server
+- Start the required authentication service on the test server
+- Create a test account with a known password
+- Prepare a test wordlist for the dictionary attack
+
+*Performing Dictionary Attack*
+- Prepare password wordlist containing test passwords
+- Specify the test server authorized username
+- Specify the test server address and authentication service
+- Run Hydra using the prepared wordlist
+- Observe the authentication attempts
+- Check whether the test password is present in the wordlist
+- Record the result
+
+*C) Performing Brute Force attack*
+- Open the terminal in Kali Linux
+- Verify that Hydra is installed
+- Specify the authorized test username
+- Specify the test server address and authentication service
+- Run Hydra with brute force option
+- Observe the authentication attempts
+- Record the result
+
+*Hydra*
+Hydra can be used for controlled authentication testing by specifying the username, password list, target and authentication service
+
+*General format*
+`Hydra -l username -P wordlist target service`
+
+*Dictionary Attack using Hydra*
+In a dictionary attack, Hydra reads passwords from a predefined wordlist and tests them one by one with specified username
+
+*Command*
+`Hydra -l username -P wordlist target service`
+
+*Switch used*
+- -l -> Specifies the username to be tested
+- -P -> Specifies the password wordlist file
+
+*Brute Force attack using Hydra*
+Here Hydra generates a password combination according to the specified parameters and tests them against the authentication service
+
+*Command*
+`Hydra -l username -x min:max:charset target service`
+
+*Switch used*
+- -x -> defines the brute force parameters
+
+*Result of Attacks*
+- *Dictionary attack:* This successfully identifying the test password when it was present with supplied wordlist
+- *Brute Force:* This successfully found the test password after multiple login attempts
+
+*Password Vulnerabilities*
+Weak or commonly used passwords can be easily guessed using automated password guessing tools like hydra
+
+*Mitigation Steps*
+Use strong and unique passwords and MFA
+
+*Result*
+The dictionary and brute force attacks were successfully performed using hydra on an authorized test server
