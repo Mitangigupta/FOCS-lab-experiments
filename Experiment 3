@@ -1,0 +1,39 @@
+*DATE: 3-9-26*
+*EXP. No. 3*
+
+*Experiment 3 -> Port scanning and information gathering using nmap*
+
+*Aim -> To perform host discovery, port scanning and service version detection using Nmap*
+
+*Tools Required ->*
+- Nmap: Core scanning and command line tool
+- Npcap: low level packet capture drivers to windows
+- Ncat: Utility used to create test listeners
+
+*Procedures and Commands*
+
+*1) Verify installation and configuration*
+(i) Open command prompt as administrator and check version -> `nmap --version`
+(ii) Check network settings : -> `ipconfig`
+
+*2) Host Discovery*
+(i) check if a target host is active without port scanning (using -sn) : -> `nmap -sn 192.168.61.230`
+
+*3) Basic Port Scanning*
+(i) Scan common TCP ports on the localhost: `nmap 127.0.0.1`
+
+*4) Create and test a known open port*
+(i) Start an Ncat listener on port 8000 `ncat -l -p 8000 127.0.0.1`
+(ii) Create the port to verify it shows as open. Stop Ncat (Ctrl+C) and rescan to see it turn closed
+
+*5) TCP SYN Scan (-sS)*
+(i) Perform a stealthy SYN scan -> `nmap -sS -p 8000 127.0.0.1`
+(ii) Check state reason on scan multiple ports: -> `nmap -sS --reason -p 22,80,443,445,8000,127.0.0.1`
+
+*6) Service and Version Detection (-sV)*
+(i) Probe Ports to identify the active software and version -> `nmap -sV 127.0.0.1`
+
+*7) UDP Scanning (-sU)*
+(i) Scan common UDP services (DNS, NTP, SNMP) -> `nmap -sU -p 53,123,161,127.0.0.1`
+
+*Conclusion:- Successfully demonstrated the three layers of Nmap information gathering Host discovery (-sn), Port scanning (-sS, -sU) and Service Identification (-sV)*
