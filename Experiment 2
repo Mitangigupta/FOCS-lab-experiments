@@ -1,0 +1,97 @@
+*DATE: 25-9-26*
+*EXP. No. 2*
+
+*Aim:- Write a C program with a buffer overflow vulnerability, exploiting the vulnerability and discussing mitigation strategies*
+
+*Theory -* A buffer overflow is a vulnerability that occurs when a program writes more data into a fixed size buffer that it can hold. The excess data may overwrite adjacent memory, causing program crashes, data corruption or unintended program execution
+
+- gets() to fgets() limits the number of character read
+- strcpy() to strncpy() allows control over the amount of data copied
+- strcat() to strncat() helps prevent writing beyond the destination
+- sprintf() to snprintf() limits the number of character written
+- scanf("%s", ...) to scanf("%Ns", ...) limits input length
+
+*Tools used -* C programming
+
+*Procedure:*
+
+*1) Displaying string and buffer size using sizeof()*
+#include <stdio.h>
+#include <string.h>
+int main() {
+ char name[10];
+ strcpy(name, "Riya");
+ printf("%s | Buffer Size: %zu bytes\n", name, sizeof(name));
+ return 0
+}
+*2) Demonstration of buffer overflow using strcpy()*
+#include <stdio.h>
+#include <string.h>
+int main() {
+ char name[10];
+ strcpy(name, "ABCDEFGHIJKLMNOP");
+ printf("Value : %s\n", name);
+ return 0;
+}
+*3) Demonstration of buffer overflow in a structure*
+#include <stdio.h>
+#include <string.h>
+struct StudentData {
+  char buffer[8];
+  char buffer[8]; // [in image it says buffer twice, but logic is status]
+};
+
+int main() {
+ struct StudentData data;
+ strcpy(data.status, "SAFE");
+ printf("BEFORE: Status = %s\n", data.status);
+ strcpy(data.buffer, "AAAAAAAAAAHACKED");
+ printf("AFTER: Buffer = %s\n", data.buffer);
+ printf("AFTER: Status = %s\n", data.status);
+ return 0;
+}
+*4) Restricted input using scanf()*
+#include <stdio.h>
+int main() {
+ char username[10];
+ printf("Enter username: ");
+ scanf("%9s", username);
+ printf("username: %s\n", username);
+ return 0;
+}
+*5) Safe string input using fgets()*
+#include <stdio.h>
+int main() {
+ char username[10];
+ printf("Enter username: ");
+ fgets(username, sizeof(username), stdin);
+ printf("username: %s", username);
+ return 0;
+}
+*6) Demonstration of memory addresses and buffer overflow*
+#include <stdio.h>
+#include <string.h>
+struct StudentData {
+  char buffer[8];
+  char status[8];
+};
+
+int main() {
+ struct StudentData data;
+ strcpy(data.status, "SAFE");
+ printf("Address of buffer: %p\n", (void*)data.buffer);
+ printf("Address of status: %p\n", (void*)data.status);
+ strcpy(data.buffer, "AAAAAAAAAAHACKED");
+ printf("After overflow, status = %s\n", data.status);
+ return 0;
+}
+*7) Safe string handling using snprintf()*
+#include <stdio.h>
+#include <string.h>
+int main() {
+ char buffer[10];
+ snprintf(buffer, sizeof(buffer), "%s", "ABCDEFGHIJKLMNOPQRS TUVWXYZ");
+ printf("Stored value: %s\n", buffer);
+ return 0;
+}
+*Conclusion -* The experiment helps us in understanding buffer handling and string operations in C. It demonstrated buffer overflow and different techniques for safe input and string handling
